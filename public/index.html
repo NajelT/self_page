@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ilja Lushpajev | Technical Delivery Portfolio</title>
+    <meta name="description" content="Technical Project Manager and Delivery Lead portfolio for Ilja Lushpajev." />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Ilja Lushpajev home">
+        <span class="brand-mark">IL</span>
+        <span>Ilja Lushpajev</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#cases" data-i18n="navCases">Cases</a>
+        <a href="#system" data-i18n="navSystem">System</a>
+        <a href="#timeline" data-i18n="navTimeline">Timeline</a>
+        <a href="/backoffice.html" data-i18n="navBackoffice">Backoffice</a>
+      </nav>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="lang-button active" type="button" data-lang="en">EN</button>
+        <button class="lang-button" type="button" data-lang="ru">RU</button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-media" src="/assets/hero-delivery-map.png" alt="" />
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow" id="role-line"></p>
+          <h1 id="hero-title"></h1>
+          <p class="hero-intro" id="hero-intro"></p>
+          <div class="hero-actions">
+            <a class="button primary" href="#cases" data-i18n="viewCases">View cases</a>
+            <a class="button ghost" id="linkedin-link" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+          <div class="availability" id="availability"></div>
+        </div>
+      </section>
+
+      <section class="strip" aria-label="Skills">
+        <div class="strip-inner" id="skills"></div>
+      </section>
+
+      <section class="section intro-grid" id="system">
+        <div>
+          <p class="section-kicker" data-i18n="systemKicker">Positioning</p>
+          <h2 data-i18n="systemTitle">A portfolio that behaves like a product system.</h2>
+        </div>
+        <div class="system-copy">
+          <p data-i18n="systemBodyOne"></p>
+          <p data-i18n="systemBodyTwo"></p>
+        </div>
+      </section>
+
+      <section class="section cases-section" id="cases" aria-labelledby="cases-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker" data-i18n="casesKicker">Case bank</p>
+            <h2 id="cases-title" data-i18n="casesTitle">Evidence, not slogans.</h2>
+          </div>
+          <div class="case-controls">
+            <button class="filter-button active" type="button" data-filter="all" data-i18n="filterAll">All</button>
+            <button class="filter-button" type="button" data-filter="AI">AI</button>
+            <button class="filter-button" type="button" data-filter="CI/CD">CI/CD</button>
+            <button class="filter-button" type="button" data-filter="ProdSupport">ProdSupport</button>
+          </div>
+        </div>
+        <div class="case-grid" id="case-grid"></div>
+      </section>
+
+      <section class="section timeline-section" id="timeline" aria-labelledby="timeline-title">
+        <div>
+          <p class="section-kicker" data-i18n="timelineKicker">Journey</p>
+          <h2 id="timeline-title" data-i18n="timelineTitle">From code to delivery systems.</h2>
+        </div>
+        <div class="timeline" id="timeline-list"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span data-i18n="footerText">Built as a local-first portfolio platform. Next: auth, SQLite/Postgres, AI assistant, richer admin workflows.</span>
+    </footer>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+{
+  "name": "Ilja Lushpajev",
+  "location": "Tallinn, Estonia",
+  "linkedin": "https://www.linkedin.com/in/ilushpajev",
+  "roles": {
+    "en": [
+      "Technical Project Manager",
+      "Technical Product Owner",
+      "Delivery Systems Builder"
+    ],
+    "ru": [
+      "Technical Project Manager",
+      "Technical Product Owner",
+      "Delivery Systems Builder"
+    ]
+  },
+  "headline": {
+    "en": "I turn chaotic delivery into systems teams can actually run.",
+    "ru": "Превращаю хаотичную delivery-среду в систему, по которой команды реально могут работать."
+  },
+  "intro": {
+    "en": "I started as a Java Developer, then moved into project and delivery management across fintech, telecom, payroll platforms, and IT delivery. My strongest zone is where engineering reality meets delivery governance: requirements, dependencies, production stability, release flow, metrics, and practical rules that help teams ship value predictably.",
+    "ru": "Я начинал как Java Developer, а затем перешел в project и delivery management в fintech, telecom, payroll-платформах и IT delivery. Моя сильная зона — там, где инженерная реальность встречается с delivery governance: требования, зависимости, production stability, release flow, метрики и практичные правила, которые помогают командам предсказуемо поставлять ценность."
+  },
+  "availability": {
+    "en": "Currently looking for Technical Project Manager, IT Project Manager, Technical Product Owner, and Delivery Lead roles.",
+    "ru": "Сейчас ищу роли Technical Project Manager, IT Project Manager, Technical Product Owner и Delivery Lead."
+  },
+  "skills": [
+    "Technical Project Management",
+    "Agile Delivery",
+    "Scrum",
+    "Kanban",
+    "SDLC",
+    "Capacity Planning",
+    "Stakeholder Management",
+    "Risk Management",
+    "Release Management",
+    "CI/CD",
+    "Feature Flags",
+    "DORA Metrics",
+    "Production Support Governance",
+    "Root Cause Analysis",
+    "LLM-assisted Analysis",
+    "Jira / YouTrack",
+    "SQL"
+  ],
+  "timeline": [
+    {
+      "period": "2025 - Present",
+      "company": "Mercans",
+      "role": "Technical Project Manager",
+      "note": "Backend, product, ProdSupport, platform delivery, AI-assisted operational analysis."
+    },
+    {
+      "period": "2024",
+      "company": "Telecom Infrastructure Partners",
+      "role": "Project / Delivery work",
+      "note": "Automation, stakeholder coordination, process throughput."
+    },
+    {
+      "period": "2023 - 2024",
+      "company": "Wallester",
+      "role": "Project Manager",
+      "note": "Regulated fintech, card issuing and payments delivery."
+    },
+    {
+      "period": "2020 - 2023",
+      "company": "Ericsson",
+      "role": "Project Manager / Technical Specialist",
+      "note": "Telecom engineering delivery, procurement portfolio, technical operations."
+    },
+    {
+      "period": "2019 - 2020",
+      "company": "Fujitsu",
+      "role": "Java Developer",
+      "note": "Java, Spring, Hibernate, PostgreSQL, tests, code reviews, release quality."
+    }
+  ]
+}

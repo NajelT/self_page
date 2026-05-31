@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Backoffice | Ilja Portfolio</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="backoffice-body">
+    <header class="topbar compact">
+      <a class="brand" href="/">
+        <span class="brand-mark">IL</span>
+        <span>Backoffice</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">Public site</a>
+      </nav>
+    </header>
+
+    <main class="admin-shell">
+      <section class="admin-panel">
+        <div class="admin-heading">
+          <div>
+            <p class="section-kicker">Content database</p>
+            <h1>Projects</h1>
+          </div>
+          <label class="token-field">
+            <span>Token</span>
+            <input id="token" type="password" value="local-dev-token" autocomplete="off" />
+          </label>
+        </div>
+        <div class="admin-grid">
+          <aside class="project-list" id="admin-list" aria-label="Project list"></aside>
+          <form class="editor" id="project-form">
+            <input type="hidden" id="project-id" />
+            <label>
+              <span>Status</span>
+              <select id="status">
+                <option value="published">published</option>
+                <option value="draft">draft</option>
+              </select>
+            </label>
+            <label>
+              <span>Rank</span>
+              <input id="rank" type="number" min="1" step="1" />
+            </label>
+            <label>
+              <span>Title EN</span>
+              <input id="title-en" required />
+            </label>
+            <label>
+              <span>Title RU</span>
+              <input id="title-ru" required />
+            </label>
+            <label>
+              <span>Summary EN</span>
+              <textarea id="summary-en" rows="4"></textarea>
+            </label>
+            <label>
+              <span>Summary RU</span>
+              <textarea id="summary-ru" rows="4"></textarea>
+            </label>
+            <label>
+              <span>Impact EN</span>
+              <textarea id="impact-en" rows="3"></textarea>
+            </label>
+            <label>
+              <span>Impact RU</span>
+              <textarea id="impact-ru" rows="3"></textarea>
+            </label>
+            <label>
+              <span>Tags, comma separated</span>
+              <input id="tags" />
+            </label>
+            <label>
+              <span>Metrics, one per line</span>
+              <textarea id="metrics" rows="4"></textarea>
+            </label>
+            <div class="editor-actions">
+              <button class="button primary" type="submit">Save</button>
+              <button class="button ghost" id="new-project" type="button">New</button>
+              <button class="button danger" id="delete-project" type="button">Delete</button>
+            </div>
+            <p class="admin-status" id="admin-status"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="/backoffice.js" type="module"></script>
+  </body>
+</html>
