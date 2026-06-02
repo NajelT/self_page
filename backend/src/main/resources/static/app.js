@@ -7,14 +7,14 @@ const copy = {
     viewCases: "View cases",
     systemKicker: "Positioning",
     systemTitle: "A portfolio that behaves like a product system.",
-    systemBodyOne: "This is intentionally more than a business-card page: the content is fed by local JSON data, the API is already separated, and the case bank can move to SQLite/Postgres without changing the public interface.",
-    systemBodyTwo: "The next layers are obvious: admin authentication, AI assistant trained on the case bank, CV/JD tailoring workflows, and eventually split services for content, search, and assistant logic.",
+    systemBodyOne: "This is intentionally more than a business-card page: the content is served by a Java API, stored in PostgreSQL, and versioned through Flyway migrations.",
+    systemBodyTwo: "The next layers are obvious: real backoffice auth, AI assistant trained on the case bank, CV/JD tailoring workflows, and eventually split services for content, search, and assistant logic.",
     casesKicker: "Case bank",
     casesTitle: "Evidence, not slogans.",
     timelineKicker: "Journey",
     timelineTitle: "From code to delivery systems.",
     filterAll: "All",
-    footerText: "Built as a local-first portfolio platform. Next: auth, SQLite/Postgres, AI assistant, richer admin workflows.",
+    footerText: "Built as a Java + PostgreSQL portfolio platform. Next: auth, AI assistant, search, richer admin workflows.",
     metrics: "Metrics",
     impact: "Impact"
   },
@@ -26,14 +26,14 @@ const copy = {
     viewCases: "Смотреть кейсы",
     systemKicker: "Позиционирование",
     systemTitle: "Портфолио, которое ведет себя как продуктовая система.",
-    systemBodyOne: "Это специально не просто сайт-визитка: контент уже идет из локальной JSON-базы, API отделен, а банк кейсов можно перенести на SQLite/Postgres без переписывания публичного интерфейса.",
-    systemBodyTwo: "Следующие слои понятны: admin authentication, AI assistant на базе кейсов, CV/JD tailoring workflows, а позже отдельные сервисы для контента, поиска и assistant logic.",
+    systemBodyOne: "Это специально не просто сайт-визитка: контент отдает Java API, данные лежат в PostgreSQL, а схема ведется через Flyway migrations.",
+    systemBodyTwo: "Следующие слои понятны: real backoffice auth, AI assistant на базе кейсов, CV/JD tailoring workflows, а позже отдельные сервисы для контента, поиска и assistant logic.",
     casesKicker: "Банк кейсов",
     casesTitle: "Доказательства, не лозунги.",
     timelineKicker: "Путь",
     timelineTitle: "От кода к delivery systems.",
     filterAll: "Все",
-    footerText: "Собрано как local-first portfolio platform. Дальше: auth, SQLite/Postgres, AI assistant, richer admin workflows.",
+    footerText: "Собрано как Java + PostgreSQL portfolio platform. Дальше: auth, AI assistant, search, richer admin workflows.",
     metrics: "Метрики",
     impact: "Impact"
   }
@@ -48,6 +48,15 @@ let state = {
 
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
 
 function t(key) {
   return copy[state.lang][key] || copy.en[key] || key;
@@ -75,14 +84,14 @@ function renderProfile() {
   $("#hero-intro").textContent = localText(profile.intro);
   $("#availability").textContent = localText(profile.availability);
   $("#linkedin-link").href = profile.linkedin;
-  $("#skills").innerHTML = profile.skills.map((skill) => `<span>${skill}</span>`).join("");
+  $("#skills").innerHTML = profile.skills.map((skill) => `<span>${escapeHtml(skill)}</span>`).join("");
   $("#timeline-list").innerHTML = profile.timeline.map((item) => `
     <article class="timeline-item">
-      <div class="timeline-period">${item.period}</div>
+      <div class="timeline-period">${escapeHtml(item.period)}</div>
       <div>
-        <h3>${item.company}</h3>
-        <p class="timeline-role">${item.role}</p>
-        <p>${item.note}</p>
+        <h3>${escapeHtml(item.company)}</h3>
+        <p class="timeline-role">${escapeHtml(item.role)}</p>
+        <p>${escapeHtml(item.note)}</p>
       </div>
     </article>
   `).join("");
@@ -97,15 +106,15 @@ function renderProjects() {
 
   $("#case-grid").innerHTML = projects.map((project) => `
     <article class="case-card">
-      <div class="tag-row">${project.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
-      <h3>${localText(project.title)}</h3>
-      <p>${localText(project.summary)}</p>
+      <div class="tag-row">${project.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>
+      <h3>${escapeHtml(localText(project.title))}</h3>
+      <p>${escapeHtml(localText(project.summary))}</p>
       <div class="case-impact">
         <strong>${t("impact")}</strong>
-        <span>${localText(project.impact)}</span>
+        <span>${escapeHtml(localText(project.impact))}</span>
       </div>
       <div class="metric-list" aria-label="${t("metrics")}">
-        ${project.metrics.map((metric) => `<span>${metric}</span>`).join("")}
+        ${project.metrics.map((metric) => `<span>${escapeHtml(metric)}</span>`).join("")}
       </div>
     </article>
   `).join("");

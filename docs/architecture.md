@@ -2,47 +2,47 @@
 
 ## Goal
 
-This is deliberately more complex than a normal portfolio page, but still small enough to understand end to end. The current version is a local-first vertical slice:
+This is deliberately more complex than a normal portfolio page, but still small enough to understand end to end. The current version is a real vertical slice:
 
 - browser UI
-- local HTTP API
-- content database represented as JSON files
+- Java HTTP API
+- PostgreSQL database
+- Flyway migrations
 - backoffice CRUD for project cases
 
 ## Boundaries
 
-### Public app
+### Public App
 
-The public app fetches profile and project data from API routes instead of hardcoding content into HTML. That keeps the content model movable.
+The public app fetches profile and project data from API routes instead of hardcoding content into HTML. The current frontend is static HTML/CSS/JS served by Spring Boot from `backend/src/main/resources/static`.
 
 ### Content API
 
-The API currently lives in `server.mjs`. It exposes:
+The API lives in the Java backend. It exposes:
 
 - `GET /api/profile`
 - `GET /api/projects`
 - `POST /api/projects`
-- `PUT /api/projects/:id`
-- `DELETE /api/projects/:id`
+- `PUT /api/projects/{id}`
+- `DELETE /api/projects/{id}`
 
 Write routes require `Authorization: Bearer <BACKOFFICE_TOKEN>`.
 
-### Data layer
+### Data Layer
 
-The current data layer is JSON-on-disk:
-
-- `data/profile.json`
-- `data/projects.json`
-
-The next natural step is SQLite:
+The database is PostgreSQL. Schema is managed by Flyway:
 
 - `profiles`
+- `profile_roles`
+- `profile_skills`
+- `profile_timeline_items`
 - `projects`
 - `project_translations`
-- `project_metrics`
 - `project_tags`
+- `project_metrics`
+- `project_case_study_items`
 
-The API contract should stay stable while the storage changes.
+The project model is normalized enough to keep translations, metrics, tags, and case-study items queryable later.
 
 ## AI Assistant Direction
 

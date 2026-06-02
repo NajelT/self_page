@@ -1,11 +1,22 @@
 # Ilja Self Page
 
-Local-first personal portfolio platform for Ilja Lushpajev.
+Personal portfolio platform for Ilja Lushpajev, built as a real Java backend instead of a static business-card site.
 
-## Run
+## Stack
+
+- Java 21
+- Spring Boot 3
+- PostgreSQL
+- Flyway migrations
+- Spring JDBC
+- Static frontend served by the Java app
+
+## Run Locally
+
+Run the whole app with Docker:
 
 ```bash
-node server.mjs
+docker compose up --build
 ```
 
 Open:
@@ -19,25 +30,56 @@ Default local backoffice token:
 local-dev-token
 ```
 
-Override it when needed:
+For local Java development without Docker, start only PostgreSQL:
 
 ```bash
-BACKOFFICE_TOKEN=change-me PORT=4173 node server.mjs
+docker compose up -d postgres
+```
+
+Then run the backend:
+
+```bash
+cd backend
+mvn spring-boot:run
+```
+
+Override local config when needed:
+
+```bash
+BACKOFFICE_TOKEN=change-me \
+DATABASE_URL=jdbc:postgresql://localhost:5432/ilja_portfolio \
+DATABASE_USERNAME=portfolio \
+DATABASE_PASSWORD=portfolio \
+mvn spring-boot:run
 ```
 
 ## Current Shape
 
-- `server.mjs` serves static files and a small JSON API.
-- `data/profile.json` stores positioning, skills, timeline, and contact links.
-- `data/projects.json` stores the first case bank.
-- `public/index.html` is the public portfolio.
-- `public/backoffice.html` is the local content editor for projects.
+- `backend/src/main/java` contains the Java API.
+- `backend/src/main/resources/db/migration` contains PostgreSQL schema and seed data.
+- `backend/src/main/resources/static` contains the public site and backoffice UI.
+- `docker-compose.yml` runs local PostgreSQL.
 
-No npm dependencies are required in this first increment.
+The public app still talks to `/api/profile` and `/api/projects`; the difference is that those routes now read/write a real database.
+
+## API
+
+- `GET /api/profile`
+- `GET /api/projects`
+- `POST /api/projects`
+- `PUT /api/projects/{id}`
+- `DELETE /api/projects/{id}`
+
+Write routes require:
+
+```http
+Authorization: Bearer local-dev-token
+```
 
 ## Next Architecture Moves
 
-1. Replace JSON files with SQLite while keeping the same `/api/profile` and `/api/projects` contract.
-2. Add real auth for the backoffice.
-3. Add an AI assistant service that answers from `profile` + `projects` + future Obsidian exports.
-4. Split services when it becomes useful: content API, search/indexing, assistant, and frontend app.
+1. Add real login/session auth for the backoffice.
+2. Add project detail pages and richer case-study editing.
+3. Add an AI assistant service that answers from profile, projects, and future Obsidian exports.
+4. Add search over cases, skills, and evidence.
+5. Split into frontend and backend services when the app becomes large enough to justify it.

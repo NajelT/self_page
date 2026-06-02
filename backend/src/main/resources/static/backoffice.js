@@ -3,6 +3,15 @@ let selectedId = null;
 
 const $ = (selector) => document.querySelector(selector);
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
 function emptyProject() {
   return {
     id: "",
@@ -57,8 +66,8 @@ function readForm() {
 function renderList() {
   $("#admin-list").innerHTML = projects.map((project) => `
     <button class="admin-project ${project.id === selectedId ? "active" : ""}" type="button" data-id="${project.id}">
-      <span>${project.rank}. ${project.title.en}</span>
-      <small>${project.status}</small>
+      <span>${escapeHtml(project.rank)}. ${escapeHtml(project.title.en)}</span>
+      <small>${escapeHtml(project.status)}</small>
     </button>
   `).join("");
 

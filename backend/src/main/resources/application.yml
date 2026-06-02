@@ -1,0 +1,18 @@
+server:
+  port: ${PORT:4173}
+
+spring:
+  application:
+    name: ilja-portfolio
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/ilja_portfolio}
+    username: ${DATABASE_USERNAME:portfolio}
+    password: ${DATABASE_PASSWORD:portfolio}
+  flyway:
+    enabled: true
+  mvc:
+    problemdetails:
+      enabled: true
+
+portfolio:
+  backoffice-token: ${BACKOFFICE_TOKEN:local-dev-token}
